@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>新闻管理系统</title>
+  <link rel="stylesheet" href="/css/public.css"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+<!--头部-->
+<header th:replace="replace::top"></header>
+<!--时间-->
+<section th:replace="replace::time"></section>
+<!--主体内容-->
+<section class="publicMian ">
+  <div th:replace="replace::left"></div>
+  <div class="right">
+    <div class="location">
+      <strong>你现在所在的位置是:</strong>
+      <span>新闻管理页面</span>
+    </div>
+    <div class="search">
+      <form th:action="@{/news/list}" th:method="get" class="formList">
+        <span>新闻名称：</span>
+        <input type="text" name="title" placeholder="请输入新闻名称" th:value="${title}"/>
+        <!--<span>是否付款：</span>-->
+        <!--<select name="status">-->
+        <!--<option value="">&#45;&#45;请选择&#45;&#45;</option>-->
+        <!--<option value="1" th:selected="${status01}==1">已付款</option>-->
+        <!--<option value="0" th:selected="${status01}==0">未付款</option>-->
+        <!--</select>-->
+        <a href="/news/toAddNews">添加新闻</a>
+        <input type="submit" value="查询"/></form>
+
+    </div>
+    <!--账单表格 样式和供应商公用-->
+    <table class="providerTable" cellpadding="0" cellspacing="0">
+      <tr class="firstTr">
+        <th width="20%">新闻题目</th>
+        <!--<th width="10%">供应商</th>-->
+        <th width="30%">新闻内容</th>
+        <th width="30%">操作</th>
+      </tr>
+      <tr th:each="news:${newss}">
+        <td>[[${news.newsTitle}]]</td>
+        <td>[[${news.newsContent}]]</td>
+        <td>
+          <a th:href="@{/news/findNewsById(id=${news.newsId},flag=1)}"><img src="/img/read.png" alt="查看"
+                                                                            title="查看"/></a>
+          <a th:href="@{/news/findNewsById(id=${news.newsId},flag=2)}"><img src="/img/xiugai.png" alt="修改" title="修改"/></a>
+          <a th:href="@{/news/deleteNewsById(id=${news.newsId})}" onclick="return confirm('确定删除此新闻?')"><img
+                  src="/img/schu.png" alt="删除" title="删除"/></a>
+        </td>
+      </tr>
+    </table>
+    <div class="pageBtn" th:fragment="page" th:if="${page.totalPage}>0">
+      <!--首页起始索引为0，且当前页不是首页时，方可跳转首页-->
+      <a th:href="@{/news/list(index=0,title=${title})}" th:if="${page.before}>=0">
+        <button type="button" class="page1">首页</button>
+      </a>
+      <a th:if="${page.before}<0">
+        <button type="button" class="page1">首页</button>
+      </a>
+
+      <!--上一页起始索引为page中计算好的，且当前页不是首页时，方可跳转上一页-->
+      <a th:href="@{/news/list(index=${page.before},title=${title})}" th:if="${page.before}>=0">
+        <button type="button" class="page1">上一页</button>
+      </a>
+      <a th:if="${page.before}<0">
+        <button type="button" class="page1">上一页</button>
+      </a>
+
+      <!--具体页数，i为页码，从1遍历到总页数，起始索引为页码*6-6-->
+      <a th:href="@{/news/list(index=${(i*6)-6},title=${title})}"
+         th:each="i:${#numbers.sequence(1,page.totalPage)}">
+        <button type="button" th:class="${page.index==(i*6)-6}?'page2':'page1'">[[${i}]]</button>
+      </a>
+
+      <!--下一页起始索引为page中计算好的，且当前页不是末页时，方可跳转下一页-->
+      <a th:href="@{/news/list(index=${page.after},title=${title})}" th:if="${page.after}>=0">
+        <button type="button" class="page1">下一页</button>
+      </a>
+      <a th:if="${page.after}<0">
+        <button type="button" class="page1">下一页</button>
+      </a>
+
+      <!--末页起始索引为最后一页的起始索引，且当前页不是末页时，方可跳转末页-->
+      <a th:href="@{/news/list(index=(${page.totalPage}-1)*6,title=${title})}" th:if="${page.after}>=0">
+        <button type="button" class="page1">末页</button>
+      </a>
+      <a th:if="${page.after}<0">
+        <button type="button" class="page1">末页</button>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!--点击删除按钮后弹出的页面-->
+<div class="zhezhao"></div>
+<div class="remove" id="removeBi">
+  <div class="removerChid">
+    <h2>提示</h2>
+    <div class="removeMain">
+      <p>你确定要删除该新闻吗？</p>
+      <a href="#" id="yes">确定</a>
+      <a href="#" id="no">取消</a>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+</footer>
+
+<script src="/js/jquery.js"></script>
+<script src="/js/js.js"></script>
+<script src="/js/time.js"></script>
+
+</body>
+</html>

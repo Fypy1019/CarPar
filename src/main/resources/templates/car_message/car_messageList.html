@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>二手车交易管理系统</title>
+  <link rel="stylesheet" href="/css/public.css"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+<!--头部-->
+<header th:replace="replace::top"></header>
+<!--时间-->
+<section th:replace="replace::time"></section>
+<!--主体内容-->
+<section class="publicMian ">
+  <div th:replace="replace::left"></div>
+  <div class="right">
+    <div class="location">
+      <strong>你现在所在的位置是:</strong>
+      <span>车辆信息管理页面</span>
+    </div>
+    <div class="search">
+      <form th:action="@{/Car_message/list}" th:method="get" class="formList">
+        <span>车辆名称：</span>
+        <input type="text" placeholder="请输入车辆的名称" name="title" th:value="${title}"/>
+        <input type="submit" value="查询"/>
+      </form>
+
+    </div>
+    <!--供应商操作表格-->
+    <table class="providerTable" cellpadding="0" cellspacing="0">
+      <tr class="firstTr">
+        <th width="6%">名称</th>
+        <th width="6%">价格</th>
+        <th width="6">类型</th>
+        <th width="6%">发动机尺寸</th>
+        <th width="6%">传输</th>
+        <th width="6%">服务历史</th>
+        <th width="6%">里程</th>
+        <th width="5%">年份</th>
+        <th width="6%">拥有者</th>
+        <th width="5%">燃料</th>
+        <th width="6%">外观</th>
+        <th width="6%">内饰</th>
+        <th width="10%">操作</th>
+      </tr>
+      <tr th:each="car:${car_messages}">
+        <td>[[${car.carName}]]</td>
+        <td>[[${car.carPrice}]]</td>
+        <td>[[${car.carBodytype}]]</td>
+        <td>[[${car.carEnginesize}]]</td>
+        <td>[[${car.carTransmission}]]</td>
+        <td>[[${car.carServicehistory}]]</td>
+        <td>[[${car.carMileage}]]</td>
+        <td>[[${car.carYear}]]</td>
+        <td>[[${car.userName}]]</td>
+        <td>[[${car.carFueltype}]]</td>
+        <td>[[${car.carExteriorcolor}]]</td>
+        <td>[[${car.carInteriorcolor}]]</td>
+        <td>
+          <a th:href="@{/Car_message/findCar_messageById(id=${car.carId},flag=1)}"><img src="/img/read.png" alt="查看"
+                                                                                        title="查看"/></a>
+          <a th:href="@{/Car_message/findCar_messageById(id=${car.carId},flag=2)}"><img src="/img/xiugai.png" alt="修改"
+                                                                                        title="修改"/></a>
+          <a th:href="@{/Car_message/deleteCar_messageById(id=${car.carId})}" onclick="return confirm('确定删除此车辆?')"
+             class="removeCar_message"><img src="/img/schu.png" alt="删除" title="删除"/></a>
+        </td>
+      </tr>
+    </table>
+    <div class="pageBtn" th:fragment="page" th:if="${page.totalPage}>0">
+      <!--首页起始索引为0，且当前页不是首页时，方可跳转首页-->
+      <a th:href="@{/Car_message/list(index=0,title=${title})}" th:if="${page.before}>=0">
+        <button type="button" class="page1">首页</button>
+      </a>
+      <a th:if="${page.before}<0">
+        <button type="button" class="page1">首页</button>
+      </a>
+
+      <!--上一页起始索引为page中计算好的，且当前页不是首页时，方可跳转上一页-->
+      <a th:href="@{/Car_message/list(index=${page.before},title=${title})}" th:if="${page.before}>=0">
+        <button type="button" class="page1">上一页</button>
+      </a>
+      <a th:if="${page.before}<0">
+        <button type="button" class="page1">上一页</button>
+      </a>
+
+      <!--具体页数，i为页码，从1遍历到总页数，起始索引为页码*6-6-->
+      <a th:href="@{/Car_message/list(index=${(i*6)-6},title=${title})}"
+         th:each="i:${#numbers.sequence(1,page.totalPage)}">
+        <button type="button" th:class="${page.index==(i*6)-6}?'page2':'page1'">[[${i}]]</button>
+      </a>
+
+      <!--下一页起始索引为page中计算好的，且当前页不是末页时，方可跳转下一页-->
+      <a th:href="@{/Car_message/list(index=${page.after},title=${title})}" th:if="${page.after}>=0">
+        <button type="button" class="page1">下一页</button>
+      </a>
+      <a th:if="${page.after}<0">
+        <button type="button" class="page1">下一页</button>
+      </a>
+
+      <!--末页起始索引为最后一页的起始索引，且当前页不是末页时，方可跳转末页-->
+      <a th:href="@{/Car_message/list(index=(${page.totalPage}-1)*6,title=${title})}" th:if="${page.after}>=0">
+        <button type="button" class="page1">末页</button>
+      </a>
+      <a th:if="${page.after}<0">
+        <button type="button" class="page1">末页</button>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!--点击删除按钮后弹出的页面-->
+<div class="zhezhao"></div>
+<div class="remove" id="removeProv">
+  <div class="removerChid">
+    <h2>提示</h2>
+    <div class="removeMain">
+      <p>你确定要删除该车辆吗？</p>
+      <a href="#" id="yes">确定</a>
+      <a href="#" id="no">取消</a>
+    </div>
+  </div>
+</div>
+
+
+<footer class="footer">
+</footer>
+
+<script src="/js/jquery.js"></script>
+<script src="/js/js.js"></script>
+<script src="/js/time.js"></script>
+
+</body>
+</html>

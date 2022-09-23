@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>二手车交易管理系统</title>
+    <link rel="stylesheet" href="/css/public.css"/>
+    <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+<!--头部-->
+<header th:replace="replace::top"></header>
+<!--时间-->
+<section th:replace="replace::time"></section>
+<!--主体内容-->
+<section class="publicMian ">
+    <div th:replace="replace::left"></div>
+    <div class="right">
+        <div class="location">
+            <strong>你现在所在的位置是:</strong>
+            <span>销售代表管理页面 >> 销售代表添加页面</span>
+        </div>
+        <div class="providerAdd">
+            <form th:action="@{/seller/addSeller}" th:method="post">
+                <!--div的class 为error是验证错误，ok是验证成功-->
+                <div>
+                    <label for="sellerName">销售代表名字：</label>
+                    <input type="text" name="sellerName" id="sellerName"/>
+                    <span >*</span>
+                </div>
+                <div>
+                    <label for="sellerPhone">销售代表电话：</label>
+                    <input type="text" name="sellerPhone" id="sellerPhone"/>
+                    <span>*</span>
+                </div>
+                <div>
+                    <label for="sellerEmail">销售代表邮箱：</label>
+                    <input type="text" name="sellerEmail" id="sellerEmail"/>
+                    <span>*</span>
+                </div>
+                <div>
+                    <label for="sellerAddress">销售代表地址：</label>
+                    <input type="text" name="sellerAddress" id="sellerAddress"/>
+                    <span>*</span>
+                </div>
+                <div class="providerAddBtn">
+                    <input type="submit" value="保存"/>
+                    <input type="button" value="返回" onclick="history.back(-1)"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+</footer>
+<script src="/js/time.js"></script>
+</body>
+</html>

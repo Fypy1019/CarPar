@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<!--[if lte IE 8]>              <html class="ie8 no-js" lang="en">     <![endif]-->
+<!--[if IE 9]>					<html class="ie9 no-js" lang="en">     <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html class="not-ie no-js" lang="en" xmlns:th="http://www.w3.org/1999/xhtml">  <!--<![endif]-->
+<head>
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	
+	<title>二手车销售 | 所有车辆</title>
+	
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	
+	<link rel="shortcut" href="/images/favicon.ico" />
+	<link rel="stylesheet" href="/css/style_.css" media="screen" />
+	<link rel="stylesheet" href="/css/skeleton_.css" media="screen" />
+	<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" />
+
+	<!-- HTML5 Shiv + detect touch events -->
+	<script type="text/javascript" src="/js/modernizr.custom.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+<body class="menu-1 h-style-1 text-1">
+
+<div class="wrap">
+	<header th:replace="replace::header"></header>
+
+	<div class="main">
+		<section class="container sbl clearfix">
+			<section id="content" class="twelve columns">
+				<div class="recent-list-cars">
+					<h3 class="widget-title"><span>现代</span> 汽车</h3>
+					<ul class="recent-list-cars clearfix">
+							<tr>
+								<th></th>
+								<th></th>
+								<th></th>
+								<th></th>
+							</tr>
+						<tr th:each="car_message:${car_messages}">
+						<li>
+							<a class="single-image picture">
+								<img th:src="'/images/car/'+${car_message.carUrl}" alt="" />
+							</a>
+
+							<a  class="list-meta">
+								<h6 class="title-list-item"><td>[[${car_message.carName}]]</td></h6>
+							</a>
+
+							<div class="detailed">
+								<span class="cost"><td>￥[[${car_message.carPrice}]]</td></span>
+								<span><td>发动机尺寸[[${car_message.carEnginesize}]]</td></span> <br />
+								<b><td>[[${car_message.carMileage}]]公里</td></b>
+							</div><!--/ .detailed-->
+
+							<a th:href="@{/transaction/pay(carId=${car_message.carId},carPrice=${car_message.carPrice})}" class="button orange" th:if="${car_message.userId}!=${session.login_user.userId}">付费获取联系</a>
+							<a href="#" class="button orange" th:if="${car_message.userId}==${session.login_user.userId}">我的车</a>
+							<!--<label class="compare">查看</label>-->
+							<a th:href="@{/transaction/findTransactionCar_messageById(id=${car_message.carId},flag=1)}" class="compare" >查看</a>>
+						</li>
+						</tr>
+
+					</ul><!--/ .recent-list-cars-->					
+					
+				</div><!--/ .recent-list-cars-->
+				
+				<div class="wp-pagenavi clearfix" th:if="${page.totalPage}>0">
+<!--					<span class="pages">Page [[#{page.index}]] of [[#{page.totalPage}]]</span>-->
+					<a th:href="@{/transaction/TransactionList(index=${page.before},
+					carName=${car_message.carName},carBodytype=${car_message.carBodytype},carTransmission=${car_message.carTransmission},
+					carYear=${car_message.carYear},carFueltype=${car_message.carFueltype},
+					maxPrice=${maxPrice},minPrice=${minPrice})}"
+						 th:if="${page.before}>=0" class="prevpostslink">
+					</a>
+					<a th:if="${page.before}<0" class="prevpostslink"></a>
+
+					<a th:class="${page.index==(i*6)-6}?'page2':'page1'"
+						 th:href="@{/transaction/TransactionList(index=${(i*6)-6},
+						 carName=${car_message.carName},carBodytype=${car_message.carBodytype},carTransmission=${car_message.carTransmission},
+					carYear=${car_message.carYear},carFueltype=${car_message.carFueltype},
+						 maxPrice=${maxPrice},minPrice=${minPrice})}"
+						 th:each="i:${#numbers.sequence(1,page.totalPage)}">[[${i}]]
+					</a>
+
+					<a th:href="@{/transaction/TransactionList(index=${page.after},
+					carName=${car_message.carName},carBodytype=${car_message.carBodytype},carTransmission=${car_message.carTransmission},
+					carYear=${car_message.carYear},carFueltype=${car_message.carFueltype},
+					maxPrice=${maxPrice},minPrice=${minPrice})}"
+						 th:if="${page.after}>=0" class="nextpostslink">
+					</a>
+					<a th:if="${page.after}<0" class="nextpostslink"></a>
+					
+				</div><!--/ .wp-pagenavi-->
+
+			</section><!--/ #content-->
+
+			<aside id="sidebar" class="four columns">
+
+				<div class="widget-container widget_custom_search">
+
+					<h3 class="widget-title">Quick Search</h3>
+
+					<!--<form action="/" id="boxpanel" class="form-panel" />-->
+
+						<!--<fieldset>-->
+							<!--<label for="manufacturer">名称：</label>-->
+							<!--<select id="manufacturer" name="manufacturer">-->
+								<!--<option value="0" />Any-->
+								<!--<option value="1" />Lorem-->
+								<!--<option value="2" />Ipsum-->
+							<!--</select>-->
+						<!--</fieldset>-->
+
+						<!--<fieldset>-->
+							<!--<label for="maxprice">车辆类型：</label>-->
+							<!--<select id="maxprice" name="maxprice">-->
+								<!--<option value="0" />No max-->
+								<!--<option value="1" />Lorem-->
+								<!--<option value="2" />Ipsum-->
+							<!--</select>-->
+						<!--</fieldset>-->
+
+						<!--<fieldset>-->
+							<!--<label for="trans">传输类型：</label>-->
+							<!--<select id="trans" name="trans">-->
+								<!--<option value="0" />Any-->
+								<!--<option value="1" />Lorem-->
+								<!--<option value="2" />Ipsum-->
+							<!--</select>-->
+						<!--</fieldset>-->
+
+						<!--<fieldset>-->
+							<!--<label for="mileage">车辆年份：</label>-->
+							<!--<select id="mileage" name="mileage">-->
+								<!--<option value="0" />Any-->
+								<!--<option value="1" />Lorem-->
+								<!--<option value="2" />Ipsum-->
+							<!--</select>-->
+						<!--</fieldset>-->
+
+						<!--<fieldset>-->
+							<!--<label for="bodytype">燃油类型：</label>-->
+							<!--<select id="bodytype" name="bodytype">-->
+								<!--<option value="0" />Any-->
+								<!--<option value="1" />Lorem-->
+								<!--<option value="2" />Ipsum-->
+							<!--</select>-->
+						<!--</fieldset>-->
+
+						<!--<div class="clear"></div>-->
+						<!--<button id="submitSearch" class="submit-search" type="submit">Search</button>-->
+
+					<!--</form>&lt;!&ndash;/ .form-panel&ndash;&gt;-->
+					<form th:action="@{/transaction/TransactionList}" id="boxpanel" class="form-panel" method="get">
+						<ul>
+							<li data-feature="Name">车辆名称：<input type="text" name="carName" id="name" th:value="${car_message.carName}"/></li>
+							<li data-feature="Body Type">车辆类型：<input type="text" name="carBodytype" id="bodytype" th:value="${car_message.carBodytype}"/></li>
+							<li data-feature="Transmission">传输类型：<input type="text" name="carTransmission" id="transmission" th:value="${car_message.carTransmission}"/></li>
+							<li data-feature="Year">车辆年份：<input type="text" name="carYear" id="year" th:value="${car_message.carYear}"/></li>
+							<li data-feature="Fuel Type">燃油类型：<input type="text" name="carFueltype" id="fueltype" th:value="${car_message.carFueltype}"/></li>
+						</ul>
+						<!--<a type="submit" class="button orange">添加</a>-->
+						<input type="submit" class="submit-search" value="查询"/>
+					</form>
+				</div><!--/ .widget-container-->
+		
+				
+				<div class="widget-container widget_loan_calculator">
+					
+					<div class="widget-head">
+						
+						<h3 class="widget-title">联系价格查询</h3>
+						
+					</div>
+					
+					<div class="entry-loan">
+						
+						<table>
+							<form th:action="@{/transaction/TransactionList}" id="priceboxpanel" class="form-panel" method="get">
+								<ul>
+									<li data-feature="Name">最大价格：<input type="text" name="maxPrice" id="minprice" th:value="${maxPrice}"/></li>
+									<li data-feature="Body Type">最低价格：<input type="text" name="minPrice" id="maxprice" th:value="${minPrice}"/></li>
+								</ul>
+								<!--<a type="submit" class="button orange">添加</a>-->
+								<input type="submit" class="button orange" value="查询"/>
+							</form>
+
+
+						</table>
+						
+					</div><!--/ .entry-loan-->
+					
+				</div><!--/ .widget-container-->
+
+
+			</aside><!--/ #sidebar-->
+
+			<!-- - - - - - - - - - - - - end Sidebar - - - - - - - - - - - - - - - - -->
+
+		</section><!--/.container -->
+
+		<!-- - - - - - - - - - - - - end Container - - - - - - - - - - - - - - - - -->
+
+	</div><!--/ .main-->
+
+
+	<!-- - - - - - - - - - - - - - - Footer - - - - - - - - - - - - - - - - -->
+
+	<footer id="footer" class="container clearfix">
+
+		<section class="container clearfix">
+
+			<div class="four columns">
+
+				<div class="widget-container widget_text">
+
+					<h3 class="widget-title">About Us</h3>
+
+					<div class="textwidget">
+
+						<p class="white">
+							incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+							exercitation.
+						</p>
+
+						<p>
+							incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+							exercitation.
+						</p>
+
+					</div><!--/ .textwidget-->
+
+					<a href="#" class="see">查看更多</a>
+
+				</div><!--/ .widget-container-->
+
+			</div><!--/ .four .columns-->
+
+			<div class="four columns">
+
+				<div class="widget-container widget_text">
+
+					<h3 class="widget-title">我们的工作时间</h3>
+
+					<div class="textwidget">
+
+						<ul class="hours">
+
+							<li>Monday <span>8 am to 7 pm</span></li>
+							<li>Tuesday <span>8 am to 9 pm</span></li>
+							<li>Wednesday <span>8 am to 9 pm</span></li>
+							<li>Thursday <span>8 am to 9 pm</span></li>
+							<li>Friday <span>8 am to 9 pm</span></li>
+							<li>Saturday <span>8 am to 9 pm</span></li>
+							<li>Sunday <span>关闭</span></li>
+
+						</ul><!--/ .hours-->
+
+					</div><!--/ .textwidget-->
+
+				</div><!--/ .widget-container-->
+
+			</div><!--/ .four .columns-->
+
+			<div class="four columns">
+
+				<div class="widget-container widget_contacts">
+
+					<h3 class="widget-title">我们的联系方式</h3>
+
+					<ul class="our-contacts">
+
+						<li class="address">
+							<b>地址信息：</b>
+							<p>Lorem ipsum Dolor sit amet, 658 Consectetur, Adipisicing 56 D</p>
+						</li>
+						<li class="phone">
+							<b>Phone:</b>&nbsp;<span>+1 (234) 567-8901</span> <br />
+							<b>FAX:</b>&nbsp;<span>+1 (234) 567-8902</span>
+						</li>
+						<li>
+							<b>Email: <a href="mailto:1548345617@qq.com">1548345617@qq.com</a></b>
+						</li>
+
+					</ul><!--/ .our-contacts-->
+
+				</div><!--/ .widget-container-->
+
+			</div><!--/ .four .columns-->
+
+			<div class="four columns">
+
+				<div id="gMap"></div>
+
+			</div><!--/ .four .columns-->
+
+			<div class="adjective clearfix">
+
+			</div><!--/ .adjective-->
+
+		</section><!--/ .container-->
+
+	</footer><!--/ #footer-->
+
+	<!-- - - - - - - - - - - - - - - end Footer - - - - - - - - - - - - - - - - -->
+
+</div><!--/ .wrap-->
+
+<div class="account-wrapper">
+
+	<form class="form-reg" method="post" action="" />
+
+	<a href="/add" class="log">上架</a>
+
+	</form><!--/ .form-reg-->
+
+</div><!--/ .account-wrapper-->
+
+<script src="/js/jquery-1.7.2.min.js"></script>
+<script>window.jQuery || document.write('<script src="/js/jquery-1.7.2.min.js"><\/script>')</script>
+<!--[if lt IE 9]>
+	<script src="/js/selectivizr-and-extra-selectors.min.js"></script>
+<![endif]-->
+
+<script src="/js/jquery.gmap.min.js"></script>
+<script src="/js/custom.js"></script>
+
+</body>
+</html>

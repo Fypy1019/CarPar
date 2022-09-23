@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>新闻管理系统</title>
+    <link rel="stylesheet" href="/css/public.css"/>
+    <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+<!--头部-->
+<header th:replace="replace::top"></header>
+<!--时间-->
+<section th:replace="replace::time"></section>
+<!--主体内容-->
+<section class="publicMian ">
+    <div th:replace="replace::left"></div>
+    <div class="right">
+        <div class="location">
+            <strong>你现在所在的位置是:</strong>
+            <span>新闻管理页面 >> 信息查看</span>
+        </div>
+        <div class="providerView">
+            <p><strong>新闻编号：</strong><span>[[${news.newsId}]]</span></p>
+            <p><strong>新闻题目：</strong><span>[[${news.newsTitle}]]</span></p>
+            <p><strong>新闻内容：</strong><span>[[${news.newsContent}]]</span></p>
+            <a href="#" onclick="history.back(-1)">返回</a>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+</footer>
+<script src="js/time.js"></script>
+
+</body>
+</html>

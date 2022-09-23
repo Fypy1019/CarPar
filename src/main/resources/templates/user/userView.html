@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>二手车交易管理系统</title>
+    <link rel="stylesheet" href="/css/public.css"/>
+    <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+<!--头部-->
+<header th:replace="replace::top"></header>
+<!--时间-->
+<section th:replace="replace::time"></section>
+<!--主体内容-->
+<section class="publicMian ">
+    <div th:replace="replace::left"></div>
+    <div class="right">
+        <div class="location">
+            <strong>你现在所在的位置是:</strong>
+            <span>用户管理页面 >> 用户信息查看页面</span>
+        </div>
+        <div class="providerView">
+            <p><strong>用户编号：</strong><span>[[${user.userId}]]</span></p>
+            <p><strong>用户名称：</strong><span>[[${user.userName}]]</span></p>
+            <p><strong>用户性别：</strong><span>[[${user.userSex}==0 ? '男':'女']]</span></p>
+            <p><strong>用户年龄：</strong><span>[[${user.age}]]</span></p>
+            <p><strong>出生日期：</strong><span>[[${#dates.format(user.userAge,'yyyy-MM-dd')}]]</span></p>
+            <p><strong>用户电话：</strong><span>[[${user.userPhone}]]</span></p>
+            <p><strong>用户地址：</strong><span>[[${user.userAddress}]]</span></p>
+            <p><strong>用户类别：</strong><span>[[${user.userType}==0 ? '管理员':(${user.userType}==1?'经理':'普通用户')]]</span></p>
+
+            <a onclick="history.back(-1)">返回</a>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+</footer>
+<script src="/js/time.js"></script>
+
+</body>
+</html>

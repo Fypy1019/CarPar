@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>二手车交易管理系统</title>
+    <link rel="stylesheet" href="/css/public.css"/>
+    <link rel="stylesheet" href="/ss/style.css"/>
+</head>
+<body>
+<!--头部-->
+<header th:replace="replace::top"></header>
+<!--时间-->
+<section th:replace="replace::time"></section>
+<!--主体内容-->
+<section class="publicMian ">
+    <div th:replace="replace::left"></div>
+    <div class="right">
+        <div class="location">
+            <strong>你现在所在的位置是:</strong>
+            <span>车辆信息管理页面 >> 信息查看</span>
+        </div>
+        <div class="car_messageView">
+            <p><strong>名称：</strong><span>[[${car_message.carName}]]</span></p>
+            <p><strong>价格：</strong><span>[[${car_message.carPrice}]]</span></p>
+            <p><strong>类型：</strong><span>[[${car_message.carBodytype}]]</span></p>
+            <p><strong>尺寸：</strong><span>[[${car_message.carEnginesize}]]</span></p>
+            <p><strong>传输：</strong><span>[[${car_message.carTransmission}]]</span></p>
+            <p><strong>服务历史：</strong><span>[[${car_message.carServicehistory}]]</span></p>
+            <p><strong>里程：</strong><span>[[${car_message.carMileage}]]</span></p>
+            <p><strong>年份：</strong><span>[[${car_message.carYear}]]</span></p>
+            <p><strong>拥有者：</strong><span>[[${car_message.userName}]]</span></p>
+            <p><strong>燃料：</strong><span>[[${car_message.carFueltype}]]</span></p>
+            <p><strong>外观：</strong><span>[[${car_message.carExteriorcolor}]]</span></p>
+            <p><strong>内饰：</strong><span>[[${car_message.carInteriorcolor}]]</span></p>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+</footer>
+<script src="/js/time.js"></script>
+
+</body>
+</html>

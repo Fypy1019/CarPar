@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<!--[if lte IE 8]>              <html class="ie8 no-js" lang="en">     <![endif]-->
+<!--[if IE 9]>					<html class="ie9 no-js" lang="en">     <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html class="not-ie no-js" lang="en" xmlns:th="http://www.w3.org/1999/xhtml">  <!--<![endif]-->
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+    <title>二手车销售 | 上架页面</title>
+
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <link rel="shortcut" href="/images/favicon.ico" />
+    <link rel="stylesheet" href="/css/style_.css" media="screen" />
+    <link rel="stylesheet" href="/css/skeleton_.css" media="screen" />
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" />
+
+    <!-- HTML5 Shiv + detect touch events -->
+    <script type="text/javascript" src="/js/modernizr.custom.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+<body class="menu-1 h-style-1 text-1">
+
+<div class="wrap">
+    <header th:replace="replace::header"></header>
+    <div class="main">
+
+        <!-- - - - - - - - - - - - - - - Container - - - - - - - - - - - - - - - - -->
+
+        <section class="container content clearfix">
+
+            <div class="compare-table clearfix">
+
+                <div class="col feature">
+
+                    <div class="heading"><h3 class="widget-title">列表</h3></div>
+
+                    <div class="viewport"></div><!--/ .viewport-->
+
+                    <ul>
+                        <li>名称</li>
+                        <li>价格</li>
+                        <li>车身类型</li>
+                        <li>发动机尺寸</li>
+                        <li>传输</li>
+                        <li>服务历史记录</li>
+                        <li>里程</li>
+                        <li>生产年份</li>
+                        <li>燃料类型</li>
+                        <li>外观颜色</li>
+                        <li>内饰颜色</li>
+                    </ul>
+                </div><!--/ .col-->
+
+                <div class="col">
+
+                    <div class="heading">&nbsp;</div>
+
+                    <div class="viewport" >
+
+                        <figure>
+                            <img src="/images/car/default.jpg" alt="" id="url"/>
+                        </figure>
+
+                        <form role="form" enctype="multipart/form-data">
+                            <input type="file" class="col_input" name="upload" placeholder="头像" id="file"/><br><br>
+                            <button type="button" class="orange" onclick="uploadfile();">上传照片</button>
+                        </form>
+
+                    </div>
+                    <form id="carForm" method="post">
+                    <!--<form th:action="@{/transaction/addTransactionCar_message}" method="post">-->
+                        <input type="hidden" name="carUrl" id="carUrl" value=""/>
+                    <ul >
+                        <li data-feature="Name"><input type="text" name="carName" id="name" /></li>
+                        <li data-feature="Price"><input type="text" name="carPrice" id="price" /></li>
+                        <li data-feature="Body Type"><input type="text" name="carBodytype" id="bodytype" /></li>
+                        <li data-feature="Engine Size"><input type="text" name="carEnginesize" id="enginesize" /></li>
+                        <li data-feature="Transmission"><input type="text" name="carTransmission" id="transmission" /></li>
+                        <li data-feature="Service History"><input type="text" name="carServicehistory" id="servicehistory" /></li>
+                        <li data-feature="Mileage"><input type="text" name="carMileage" id="mileage" /></li>
+                        <li data-feature="Year"><input type="text" name="carYear" id="year" /></li>
+                        <li data-feature="Fuel Type"><input type="text" name="carFueltype" id="fueltype" /></li>
+                        <li data-feature="Exterior Color"><input type="text" name="carExteriorcolor" id="exteriorcolor"/></li>
+                        <li data-feature="Interior Color"><input type="text" name="carInteriorcolor" id="interiorcolor" /></li>
+                    </ul>
+                        <!--<a type="submit" class="button orange">添加</a>-->
+                        <input type="button" class="button orange" onclick="addCar();" value="保存"/>
+                        <!--<input type="submit" class="button orange" value="保存"/>-->
+                        <input type="button" class="button orange" value="返回" onclick="history.back(-1)"/>
+                    </form>
+                </div><!--/ .col-->
+
+
+            </div><!--/ .compare-table-->
+
+        </section><!--/.container -->
+
+        <!-- - - - - - - - - - - - - end Container - - - - - - - - - - - - - - - - -->
+
+    </div><!--/ .main-->
+
+
+    <!-- - - - - - - - - - - - - - - Footer - - - - - - - - - - - - - - - - -->
+
+    <footer id="footer" class="container clearfix">
+
+        <section class="container clearfix">
+
+            <div class="four columns">
+
+                <div class="widget-container widget_text">
+
+                    <h3 class="widget-title">About Us</h3>
+
+                    <div class="textwidget">
+
+                        <p class="white">
+                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                            exercitation.
+                        </p>
+
+                        <p>
+                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                            exercitation.
+                        </p>
+
+                    </div><!--/ .textwidget-->
+
+                    <a href="columns.html" class="see">查看更多</a>
+
+                </div><!--/ .widget-container-->
+
+            </div><!--/ .four .columns-->
+
+            <div class="four columns">
+
+                <div class="widget-container widget_text">
+
+                    <h3 class="widget-title">我们的工作时间</h3>
+
+                    <div class="textwidget">
+
+                        <ul class="hours">
+
+                            <li>Monday <span>8 am to 7 pm</span></li>
+                            <li>Tuesday <span>8 am to 9 pm</span></li>
+                            <li>Wednesday <span>8 am to 9 pm</span></li>
+                            <li>Thursday <span>8 am to 9 pm</span></li>
+                            <li>Friday <span>8 am to 9 pm</span></li>
+                            <li>Saturday <span>8 am to 9 pm</span></li>
+                            <li>Sunday <span>关闭</span></li>
+
+                        </ul><!--/ .hours-->
+
+                    </div><!--/ .textwidget-->
+
+                </div><!--/ .widget-container-->
+
+            </div><!--/ .four .columns-->
+
+            <div class="four columns">
+
+                <div class="widget-container widget_contacts">
+
+                    <h3 class="widget-title">我们的联系方式</h3>
+
+                    <ul class="our-contacts">
+
+                        <li class="address">
+                            <b>地址信息：</b>
+                            <p>Lorem ipsum Dolor sit amet, 658 Consectetur, Adipisicing 56 D</p>
+                        </li>
+                        <li class="phone">
+                            <b>Phone:</b>&nbsp;<span>+1 (234) 567-8901</span> <br />
+                            <b>FAX:</b>&nbsp;<span>+1 (234) 567-8902</span>
+                        </li>
+                        <li>
+                            <b>Email: <a href="mailto:1548345617@qq.com">1548345617@qq.com</a></b>
+                        </li>
+
+                    </ul><!--/ .our-contacts-->
+
+                </div><!--/ .widget-container-->
+
+            </div><!--/ .four .columns-->
+
+            <div class="four columns">
+
+                <div id="gMap"></div>
+
+            </div><!--/ .four .columns-->
+
+            <div class="adjective clearfix">
+
+            </div><!--/ .adjective-->
+
+        </section><!--/ .container-->
+
+    </footer><!--/ #footer-->
+
+    <!-- - - - - - - - - - - - - - - end Footer - - - - - - - - - - - - - - - - -->
+
+</div><!--/ .wrap-->
+
+<div class="account-wrapper">
+
+    <form class="form-reg" method="post" action="" />
+
+    <a href="/add" class="log">上架</a>
+
+    </form><!--/ .form-reg-->
+
+</div><!--/ .account-wrapper-->
+<script src="/js/jquery-1.7.2.min.js"></script>
+<script>window.jQuery || document.write('<script src="/js/jquery-1.7.2.min.js"><\/script>')</script>
+<!--[if lt IE 9]>
+<script src="/js/selectivizr-and-extra-selectors.min.js"></script>
+<![endif]-->
+
+<script src="/js/jquery.gmap.min.js"></script>
+<script type="text/javascript"src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/custom.js"></script>
+<script type="text/javascript" th:inline="javascript" charset="utf-8">
+    function addCar() {
+        var reg = new RegExp("^[0-9]*$");
+        var price = $("#price").val();
+        var name = $("#name").val();
+        if (name == ""){
+            alert("名称不能为空");
+        }else if (price == ""){
+            alert("价格不能为空");
+        }else if (!reg.test(price)){
+            alert("请检查数据格式");
+        }else {
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "/transaction/addTransactionCar_message" ,
+                data: $('#carForm').serialize(),
+                success: function (result) {
+                    alert(result.msg);
+                    if (result.code == 1) {
+                        window.location.href = "/transaction/TransactionList";
+                    }
+                },
+                error : function() {
+                    alert("异常！");
+                }
+            });
+        }
+
+    }
+
+    function uploadfile() {
+        var file = $('#file').val();
+        if (file == ""){
+            alert("请上传图片");
+        }else {
+            var formData = new FormData();
+            formData.append("file",$("#file")[0].files[0]);
+            $.ajax({
+                type : "post",
+                url : "/transaction/upload",
+                data : formData,
+                processData : false,
+                contentType : false,
+                success : function(result) {
+                   $('#url').attr("src","/images/car/"+result.msg);
+                   $('#carUrl').val(result.msg);
+                }
+            });
+        }
+    }
+</script>
+</body>
+</html>

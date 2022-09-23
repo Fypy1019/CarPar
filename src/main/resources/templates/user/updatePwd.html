@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>二手车交易管理系统</title>
+  <link rel="stylesheet" href="/css/public.css"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+<!--头部-->
+<header th:replace="replace::top"></header>
+<!--时间-->
+<section th:replace="replace::time"></section>
+<!--主体内容-->
+<section class="publicMian ">
+  <div th:replace="replace::left"></div>
+  <div class="right">
+    <div class="location">
+      <strong>你现在所在的位置是:</strong>
+      <span>用户管理页面 >> 用户修改密码</span>
+    </div>
+    <div class="providerAdd">
+      <form id="pwdFrom" method="post">
+        <div>
+          <label for="userName">原始密码：</label>
+          <input type="password" name="pwd1" id="userName"/>
+          <span >*</span>
+        </div>
+        <div>
+          <label for="userName">新密码：</label>
+          <input type="password" name="pwd2" id="userName"/>
+          <span >*</span>
+        </div>
+        <div>
+          <label for="userName">确认密码：</label>
+          <input type="password" name="pwd3" id="userName"/>
+          <span >*</span>
+        </div>
+        <div class="providerAddBtn">
+          <input type="button" value="保存" onclick="updatePwd();"/>
+          <input type="button" value="返回" onclick="history.back(-1)"/>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+<footer class="footer">
+</footer>
+<script src="/js/time.js"></script>
+
+<script type="text/javascript"src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" th:inline="javascript" charset="utf-8">
+    function updatePwd() {
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "/user/updatePwd" ,
+            data: $('#pwdFrom').serialize(),
+            success: function (result) {
+                alert(result.msg);
+                if (result.code == 0) {
+                    window.location.href = "/user/logout";
+                }
+            },
+            error : function() {
+                alert("异常！");
+            }
+        });
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<!--[if lte IE 8]>              <html class="ie8 no-js" lang="en">     <![endif]-->
+<!--[if IE 9]>					<html class="ie9 no-js" lang="en">     <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html class="not-ie no-js" lang="en" xmlns:th="http://www.w3.org/1999/xhtml">  <!--<![endif]-->
+<head>
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	
+	<title>二手车销售 | 车辆信息</title>
+	
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	
+	<link rel="shortcut" href="/images/favicon.ico" />
+	<link rel="stylesheet" href="/css/style_.css" media="screen" />
+	<link rel="stylesheet" href="/css/skeleton_.css" media="screen" />
+	<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" />
+
+	<!-- HTML5 Shiv + detect touch events -->
+	<script type="text/javascript" src="/js/modernizr.custom.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+<body class="menu-1 h-style-1 text-1">
+
+<div class="wrap">
+	<header th:replace="replace::header"></header>
+	<div class="main">
+
+		<!-- - - - - - - - - - - - - - - Container - - - - - - - - - - - - - - - - -->	
+
+		<section class="container content clearfix">
+			
+			
+			<div class="compare-table clearfix">
+				
+				<div class="col features">
+					
+					<div class="heading"><h3 class="widget-title">列表</h3></div>
+					
+					<div class="viewport"></div><!--/ .viewport-->
+					
+					<ul>
+						<li>价格</li>
+						<li>车身类型</li>
+						<li>发动机尺寸</li>
+						<li>传输</li>
+						<li>服务历史记录</li>
+						<li>里程</li>
+						<li>生产年份</li>
+						<li>拥有者</li>
+						<li>燃料类型</li>
+						<li>外观颜色</li>
+						<li>内饰颜色</li>
+						<li>上架时间</li>
+					</ul>
+					
+				</div><!--/ .col-->
+				
+				<div class="col">
+					
+					<div class="heading">&nbsp;</div>
+					
+					<div class="viewport">
+						
+						<figure>
+							<img th:src="'/images/car/'+${transactionCar_message.carUrl}" alt="" style="height: 113px;"/>
+							<figcaption>[[${transactionCar_message.carName}]]</figcaption>
+						</figure>
+
+						<a th:href="@{/transaction/pay(carId=${transactionCar_message.carId},carPrice=${transactionCar_message.carPrice})}" class="button orange" th:if="${transactionCar_message.userId}!=${session.login_user.userId}">付费获取联系</a>
+						
+					</div><!--/ .viewport-->
+					
+					<ul>
+						<li data-feature="Price">[[${transactionCar_message.carPrice}]]</li>
+						<li data-feature="Body Type">[[${transactionCar_message.carBodytype}]]</li>
+						<li data-feature="Engine Size">[[${transactionCar_message.carEnginesize}]]</li>
+						<li data-feature="Transmission">[[${transactionCar_message.carTransmission}]]</li>
+						<li data-feature="Service History">[[${transactionCar_message.carServicehistory}]]</li>
+						<li data-feature="Mileage">[[${transactionCar_message.carMileage}]]</li>
+						<li data-feature="Year">[[${transactionCar_message.carYear}]]</li>
+						<li data-feature="User">[[${transactionCar_message.userName}]]</li>
+						<li data-feature="Fuel Type">[[${transactionCar_message.carFueltype}]]</li>
+						<li data-feature="Exterior Color">[[${transactionCar_message.carExteriorcolor}]]</li>
+						<li data-feature="Interior Color">[[${transactionCar_message.carInteriorcolor}]]</li>
+						<li data-feature="Create Time">[[${transactionCar_message.createTime}]]</li>
+
+					</ul>
+					
+				</div><!--/ .col-->
+				
+		
+				
+			</div><!--/ .compare-table-->
+
+		</section><!--/.container -->
+
+		<!-- - - - - - - - - - - - - end Container - - - - - - - - - - - - - - - - -->
+
+	</div><!--/ .main-->
+
+
+	<!-- - - - - - - - - - - - - - - Footer - - - - - - - - - - - - - - - - -->
+
+	<footer id="footer" class="container clearfix">
+
+		<section class="container clearfix">
+
+			<div class="four columns">
+
+				<div class="widget-container widget_text">
+
+					<h3 class="widget-title">About Us</h3>
+
+					<div class="textwidget">
+
+						<p class="white">
+							incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+							exercitation.
+						</p>
+
+						<p>
+							incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+							exercitation.
+						</p>
+
+					</div><!--/ .textwidget-->
+
+					<a href="#" class="see">查看更多</a>
+
+				</div><!--/ .widget-container-->
+
+			</div><!--/ .four .columns-->
+
+			<div class="four columns">
+
+				<div class="widget-container widget_text">
+
+					<h3 class="widget-title">我们的工作时间</h3>
+
+					<div class="textwidget">
+
+						<ul class="hours">
+
+							<li>Monday <span>8 am to 7 pm</span></li>
+							<li>Tuesday <span>8 am to 9 pm</span></li>
+							<li>Wednesday <span>8 am to 9 pm</span></li>
+							<li>Thursday <span>8 am to 9 pm</span></li>
+							<li>Friday <span>8 am to 9 pm</span></li>
+							<li>Saturday <span>8 am to 9 pm</span></li>
+							<li>Sunday <span>关闭</span></li>
+
+						</ul><!--/ .hours-->
+
+					</div><!--/ .textwidget-->
+
+				</div><!--/ .widget-container-->
+
+			</div><!--/ .four .columns-->
+
+			<div class="four columns">
+
+				<div class="widget-container widget_contacts">
+
+					<h3 class="widget-title">我们的联系方式</h3>
+
+					<ul class="our-contacts">
+
+						<li class="address">
+							<b>地址信息：</b>
+							<p>Lorem ipsum Dolor sit amet, 658 Consectetur, Adipisicing 56 D</p>
+						</li>
+						<li class="phone">
+							<b>Phone:</b>&nbsp;<span>+1 (234) 567-8901</span> <br />
+							<b>FAX:</b>&nbsp;<span>+1 (234) 567-8902</span>
+						</li>
+						<li>
+							<b>Email: <a href="mailto:1548345617@qq.com">1548345617@qq.com</a></b>
+						</li>
+
+					</ul><!--/ .our-contacts-->
+
+				</div><!--/ .widget-container-->
+
+			</div><!--/ .four .columns-->
+
+			<div class="four columns">
+
+				<div id="gMap"></div>
+
+			</div><!--/ .four .columns-->
+
+			<div class="adjective clearfix">
+
+			</div><!--/ .adjective-->
+
+		</section><!--/ .container-->
+
+	</footer><!--/ #footer-->
+
+	<!-- - - - - - - - - - - - - - - end Footer - - - - - - - - - - - - - - - - -->
+
+</div><!--/ .wrap-->
+
+<div class="account-wrapper">
+
+	<form class="form-reg" method="post" action="" />
+
+	<a href="/add" class="log">上架</a>
+
+	</form><!--/ .form-reg-->
+
+</div><!--/ .account-wrapper-->
+<script src="/js/jquery-1.7.2.min.js"></script>
+<script>window.jQuery || document.write('<script src="/js/jquery-1.7.2.min.js"><\/script>')</script>
+<!--[if lt IE 9]>
+	<script src="/js/selectivizr-and-extra-selectors.min.js"></script>
+<![endif]-->
+
+<script src="/js/jquery.gmap.min.js"></script>
+<script src="/js/custom.js"></script>
+
+</body>
+</html>

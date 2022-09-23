@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>新闻管理系统</title>
+    <link rel="stylesheet" href="/css/public.css"/>
+    <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+<!--头部-->
+<header th:replace="replace::top"></header>
+<!--时间-->
+<section th:replace="replace::time"></section>
+<!--主体内容-->
+<section class="publicMian ">
+    <div th:replace="replace::left"></div>
+    <div class="right">
+        <div class="location">
+            <strong>你现在所在的位置是:</strong>
+            <span>新闻管理页面 >> 新闻修改页面</span>
+        </div>
+        <div class="providerAdd">
+            <form th:action="@{/news/updateNews}" th:method="post">
+                <!--div的class 为error是验证错误，ok是验证成功-->
+                <div>
+                    <label for="newsTitle">新闻名称：</label>
+                    <input type="text" name="newsTitle" id="newsTitle" th:value="${news.newsTitle}"/>
+                    <input type="hidden" name="newsId" th:value="${news.newsId}"/>
+                    <span >*</span>
+                </div>
+                <div>
+                    <label for="newsContent">新闻内容：</label>
+                    <input type="text" name="newsContent" id="newsContent" th:value="${news.newsContent}"/>
+                    <span>*</span>
+                </div>
+                <div class="providerAddBtn">
+                    <input type="submit" value="保存"/>
+                    <input type="button" value="返回" onclick="history.back(-1)"/>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</section>
+<footer class="footer">
+</footer>
+<script src="/js/time.js"></script>
+
+</body>
+</html>

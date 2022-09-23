@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<!--[if lte IE 8]>              <html class="ie8 no-js" lang="en">     <![endif]-->
+<!--[if IE 9]>					<html class="ie9 no-js" lang="en">     <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html class="not-ie no-js" lang="en" xmlns:th="http://www.w3.org/1999/xhtml">  <!--<![endif]-->
+<head>
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+	<title>二手车销售 | 我的车辆</title>
+
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+
+	<link rel="shortcut" href="/images/favicon.ico" />
+	<link rel="stylesheet" href="/css/style_.css" media="screen" />
+	<link rel="stylesheet" href="/css/skeleton_.css" media="screen" />
+	<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" />
+
+	<!-- HTML5 Shiv + detect touch events -->
+	<script type="text/javascript" src="/js/modernizr.custom.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+<body class="menu-1 h-style-1 text-1">
+
+<div class="wrap">
+	<header th:replace="replace::header"></header>
+	<div class="main">
+
+		<!-- - - - - - - - - - - - - - - Container - - - - - - - - - - - - - - - - -->
+
+		<section class="container sbl clearfix">
+
+			<!-- - - - - - - - - - - - - - - Content - - - - - - - - - - - - - - - - -->
+
+			<section id="content" class="twelve columns">
+
+				<div class="recent-list-cars">
+
+					<h3 class="widget-title" th:if="${flag}==1"><span>我的</span> 车辆</h3>
+					<h3 class="widget-title" th:if="${flag}==2"><span>我的</span> 购买</h3>
+
+					<ul class="recent-list-cars clearfix">
+						<tr>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+						</tr>
+						<tr th:each="car_message:${car_messages}">
+							<li>
+								<a  class="single-image picture">
+									<img th:src="'/images/car/'+${car_message.carUrl}" alt="" />
+								</a>
+
+								<a  class="list-meta">
+									<h6 class="title-list-item"><td>[[${car_message.carName}]]</td></h6>
+								</a>
+
+								<div class="detailed">
+									<span class="cost"><td>￥[[${car_message.carPrice}]]</td></span>
+									<span><td>发动机尺寸[[${car_message.carEnginesize}]]</td></span> <br />
+									<b><td>[[${car_message.carMileage}]]公里</td></b>
+								</div><!--/ .detailed-->
+								<a th:href="@{/transaction/findTransactionCar_messageById(id=${car_message.carId},flag=1)}" class="button orange">查看</a>
+								<a th:if="${flag}==1"><a th:href="@{/transaction/findTransactionCar_messageById(id=${car_message.carId},flag=2)}"  class="button orange">修改</a></a>
+								<!--<label class="compare">查看</label>-->
+								<!--<a href="one-products.html" class="button orange">刪除</a>-->
+								<a th:href="@{/transaction/deleteMyCarById(id=${car_message.carId})}" onclick="return confirm('确定删除此车辆?')"class="button orange">删除</a>
+							</li>
+						</tr>
+
+					</ul><!--/ .recent-list-cars-->
+
+				</div><!--/ .recent-list-cars-->
+
+
+			</section><!--/ #content-->
+
+			<!-- - - - - - - - - - - - - - end Content - - - - - - - - - - - - - - - - -->
+
+
+			<!-- - - - - - - - - - - - - - - Sidebar - - - - - - - - - - - - - - - - --
+
+			<!-- - - - - - - - - - - - - end Sidebar - - - - - - - - - - - - - - - - -->
+
+		</section><!--/.container -->
+
+		<!-- - - - - - - - - - - - - end Container - - - - - - - - - - - - - - - - -->
+
+	</div><!--/ .main-->
+
+
+	<!-- - - - - - - - - - - - - - - Footer - - - - - - - - - - - - - - - - -->
+
+	<footer id="footer" class="container clearfix">
+
+		<section class="container clearfix">
+
+			<div class="four columns">
+
+				<div class="widget-container widget_text">
+
+					<h3 class="widget-title">About Us</h3>
+
+					<div class="textwidget">
+
+						<p class="white">
+							incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+							exercitation.
+						</p>
+
+						<p>
+							incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+							exercitation.
+						</p>
+
+					</div><!--/ .textwidget-->
+
+					<a href="#" class="see">查看更多</a>
+
+				</div><!--/ .widget-container-->
+
+			</div><!--/ .four .columns-->
+
+			<div class="four columns">
+
+				<div class="widget-container widget_text">
+
+					<h3 class="widget-title">我们的工作时间</h3>
+
+					<div class="textwidget">
+
+						<ul class="hours">
+
+							<li>Monday <span>8 am to 7 pm</span></li>
+							<li>Tuesday <span>8 am to 9 pm</span></li>
+							<li>Wednesday <span>8 am to 9 pm</span></li>
+							<li>Thursday <span>8 am to 9 pm</span></li>
+							<li>Friday <span>8 am to 9 pm</span></li>
+							<li>Saturday <span>8 am to 9 pm</span></li>
+							<li>Sunday <span>关闭</span></li>
+
+						</ul><!--/ .hours-->
+
+					</div><!--/ .textwidget-->
+
+				</div><!--/ .widget-container-->
+
+			</div><!--/ .four .columns-->
+
+			<div class="four columns">
+
+				<div class="widget-container widget_contacts">
+
+					<h3 class="widget-title">我们的联系方式</h3>
+
+					<ul class="our-contacts">
+
+						<li class="address">
+							<b>地址信息：</b>
+							<p>Lorem ipsum Dolor sit amet, 658 Consectetur, Adipisicing 56 D</p>
+						</li>
+						<li class="phone">
+							<b>Phone:</b>&nbsp;<span>+1 (234) 567-8901</span> <br />
+							<b>FAX:</b>&nbsp;<span>+1 (234) 567-8902</span>
+						</li>
+						<li>
+							<b>Email: <a href="mailto:1548345617@qq.com">1548345617@qq.com</a></b>
+						</li>
+
+					</ul><!--/ .our-contacts-->
+
+				</div><!--/ .widget-container-->
+
+			</div><!--/ .four .columns-->
+
+			<div class="four columns">
+
+				<div id="gMap"></div>
+
+			</div><!--/ .four .columns-->
+
+			<div class="adjective clearfix">
+
+			</div><!--/ .adjective-->
+
+		</section><!--/ .container-->
+
+	</footer><!--/ #footer-->
+
+	<!-- - - - - - - - - - - - - - - end Footer - - - - - - - - - - - - - - - - -->
+
+</div><!--/ .wrap-->
+
+<div class="account-wrapper">
+
+	<form class="form-reg" method="post" action="" />
+
+	<a href="/add" class="log">上架</a>
+
+	</form><!--/ .form-reg-->
+
+</div><!--/ .account-wrapper-->
+
+<script src="/js/jquery-1.7.2.min.js"></script>
+<script>window.jQuery || document.write('<script src="/js/jquery-1.7.2.min.js"><\/script>')</script>
+<!--[if lt IE 9]>
+<script src="/js/selectivizr-and-extra-selectors.min.js"></script>
+<![endif]-->
+
+<script src="/js/jquery.gmap.min.js"></script>
+<script src="/js/custom.js"></script>
+
+</body>
+</html>

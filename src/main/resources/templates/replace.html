@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header class="publicHeader" th:fragment="top">
+    <h1>二手车交易管理系统</h1>
+    <div class="publicHeaderR">
+        <p><span>下午好！</span><span style="color: #fff21b">[[${session.login_user.userName}]]</span> , 欢迎你！<span><a href="/transaction/logout">退出</a></span></p>
+        <!--<a href="/user/logout">退出</a>-->
+    </div>
+</header>
+
+<section class="publicTime" th:fragment="time">
+    <span id="time"></span>
+
+</section>
+
+
+<div class="left" th:fragment="left">
+    <h2 class="leftH2"><span class="span1"></span>功能列表 <span></span></h2>
+    <nav>
+        <ul class="list">
+            <li><a href="/user/list">用户管理</a></li>
+            <li><a href="/news/list">新闻管理</a></li>
+            <li><a href="/Car_message/list">车辆信息</a></li>
+            <li><a href="/user/toUpdatePwd">密码修改</a></li>
+            <li><a href="/seller/list">销售代表</a></li>
+        </ul>
+    </nav>
+</div>
+
+
+<header id="header" class="clearfix" th:fragment="header">
+    <a id="logo">
+        <img src="/images/logo.png" alt="Car Dealer"/>
+        <div class="widget-container widget_search">
+            <span class="call"><span>+1 234</span> 567-8901</span><br/>
+            <span class="adds">12 Street, Los Angeles, CA, 94101</span>
+        </div><!--/ .widget-container-->
+    </a>
+    <nav id="navigation" class="navigation">
+    <ul>
+        <li class="current-menu-item"><a href="/transaction/transactionList">首页</a></li>
+        <li><a href="/transaction/NewsList">新闻</a></li>
+        <li><a href="/transaction/sellerList">销售代表</a></li>
+        <li><a>个人中心</a>
+            <ul>
+                <li><a th:href="@{/transaction/findUserById(id=${session.login_user.userId},flag=1)}">我的信息</a></li>
+                <li><a th:href="@{/transaction/myCar(flag=1)}">我的车辆</a>
+                <li><a th:href="@{/transaction/myCar(flag=2)}">我的购买</a>
+                <li><a href="/transaction/toUpdateUserPw">修改密码</a>
+            </ul>
+        </li>
+        <li><a href="/transaction/logout">退出</a></li>
+    </ul>
+</nav>
+</header>
+</body>
+</html>

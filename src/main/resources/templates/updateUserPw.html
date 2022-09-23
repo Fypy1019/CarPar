@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<!--[if lte IE 8]>              <html class="ie8 no-js" lang="en">     <![endif]-->
+<!--[if IE 9]>					<html class="ie9 no-js" lang="en">     <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html class="not-ie no-js" lang="en" xmlns:th="http://www.w3.org/1999/xhtml">  <!--<![endif]-->
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+    <title>二手车销售 | 修改密码</title>
+
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <link rel="shortcut" href="/images/favicon.ico" />
+    <link rel="stylesheet" href="/css/style_.css" media="screen" />
+    <link rel="stylesheet" href="/css/skeleton_.css" media="screen" />
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" />
+
+    <!-- HTML5 Shiv + detect touch events -->
+    <script type="text/javascript" src="/js/modernizr.custom.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+<body class="menu-1 h-style-1 text-1">
+
+<div class="wrap">
+    <header th:replace="replace::header"></header>
+    <div class="main">
+
+        <!-- - - - - - - - - - - - - - - Container - - - - - - - - - - - - - - - - -->
+
+        <section class="container content clearfix">
+
+
+            <div class="compare-table clearfix">
+
+
+                <div class="col">
+
+                    <div class="heading">&nbsp;</div>
+
+                    <!--<form th:action="@{/transaction/updateUserMessage}" th:method="post">-->
+                        <!--div的class 为error是验证错误，ok是验证成功-->
+                        <form id="pwdFrom" method="post">
+                            <div>
+                                <label for="userName">原始密码：</label>
+                                <input type="password" name="pwd1" id="userName"/>
+                                <span >*</span>
+                            </div>
+                            <div>
+                                <label for="userName">新的密码：</label>
+                                <input type="password" name="pwd2" id="userName"/>
+                                <span >*</span>
+                            </div>
+                            <div>
+                                <label for="userName">确认密码：</label>
+                                <input type="password" name="pwd3" id="userName"/>
+                                <span >*</span>
+                            </div>
+                            <div class="providerAddBtn">
+                                <input type="button" value="保存" class="button orange" onclick="updateUserPw();"/>
+                                <input type="button" value="返回" class="button orange" onclick="history.back(-1)"/>
+                            </div>
+                    </form>
+
+                </div><!--/ .col-->
+                <script type="text/javascript"src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+                <script type="text/javascript" th:inline="javascript" charset="utf-8">
+                    function updateUserPw() {
+                        $.ajax({
+                            type: "POST",
+                            dataType: "json",
+                            url: "/transaction/updateUserPw" ,
+                            data: $('#pwdFrom').serialize(),
+                            success: function (result) {
+                                alert(result.msg);
+                                if (result.code == 0) {
+                                    window.location.href = "/transaction/loginout";
+                                }
+                            },
+                            error : function() {
+                                alert("异常！");
+                            }
+                        });
+                    }
+                </script>
+
+            </div><!--/ .compare-table-->
+
+        </section><!--/.container -->
+
+        <!-- - - - - - - - - - - - - end Container - - - - - - - - - - - - - - - - -->
+
+    </div><!--/ .main-->
+
+
+    <!-- - - - - - - - - - - - - - - Footer - - - - - - - - - - - - - - - - -->
+
+    <footer id="footer" class="container clearfix">
+
+        <section class="container clearfix">
+
+            <div class="four columns">
+
+                <div class="widget-container widget_text">
+
+                    <h3 class="widget-title">About Us</h3>
+
+                    <div class="textwidget">
+
+                        <p class="white">
+                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                            exercitation.
+                        </p>
+
+                        <p>
+                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                            exercitation.
+                        </p>
+
+                    </div><!--/ .textwidget-->
+
+                    <a href="#" class="see">查看更多</a>
+
+                </div><!--/ .widget-container-->
+
+            </div><!--/ .four .columns-->
+
+            <div class="four columns">
+
+                <div class="widget-container widget_text">
+
+                    <h3 class="widget-title">我们的工作时间</h3>
+
+                    <div class="textwidget">
+
+                        <ul class="hours">
+
+                            <li>Monday <span>8 am to 7 pm</span></li>
+                            <li>Tuesday <span>8 am to 9 pm</span></li>
+                            <li>Wednesday <span>8 am to 9 pm</span></li>
+                            <li>Thursday <span>8 am to 9 pm</span></li>
+                            <li>Friday <span>8 am to 9 pm</span></li>
+                            <li>Saturday <span>8 am to 9 pm</span></li>
+                            <li>Sunday <span>关闭</span></li>
+
+                        </ul><!--/ .hours-->
+
+                    </div><!--/ .textwidget-->
+
+                </div><!--/ .widget-container-->
+
+            </div><!--/ .four .columns-->
+
+            <div class="four columns">
+
+                <div class="widget-container widget_contacts">
+
+                    <h3 class="widget-title">我们的联系方式</h3>
+
+                    <ul class="our-contacts">
+
+                        <li class="address">
+                            <b>地址信息：</b>
+                            <p>Lorem ipsum Dolor sit amet, 658 Consectetur, Adipisicing 56 D</p>
+                        </li>
+                        <li class="phone">
+                            <b>Phone:</b>&nbsp;<span>+1 (234) 567-8901</span> <br />
+                            <b>FAX:</b>&nbsp;<span>+1 (234) 567-8902</span>
+                        </li>
+                        <li>
+                            <b>Email: <a href="mailto:1548345617@qq.com">1548345617@qq.com</a></b>
+                        </li>
+
+                    </ul><!--/ .our-contacts-->
+
+                </div><!--/ .widget-container-->
+
+            </div><!--/ .four .columns-->
+
+            <div class="four columns">
+
+                <div id="gMap"></div>
+
+            </div><!--/ .four .columns-->
+
+            <div class="adjective clearfix">
+
+            </div><!--/ .adjective-->
+
+        </section><!--/ .container-->
+
+    </footer><!--/ #footer-->
+
+    <!-- - - - - - - - - - - - - - - end Footer - - - - - - - - - - - - - - - - -->
+
+</div><!--/ .wrap-->
+
+<div class="account-wrapper">
+
+    <form class="form-reg" method="post" action="" />
+
+    <a href="/add" class="log">上架</a>
+
+    </form><!--/ .form-reg-->
+
+</div><!--/ .account-wrapper-->
+<script src="/js/jquery-1.7.2.min.js"></script>
+<script>window.jQuery || document.write('<script src="/js/jquery-1.7.2.min.js"><\/script>')</script>
+<!--[if lt IE 9]>
+<script src="/js/selectivizr-and-extra-selectors.min.js"></script>
+<![endif]-->
+
+<script src="/js/jquery.gmap.min.js"></script>
+<script src="/js/custom.js"></script>
+
+</body>
+</html>
